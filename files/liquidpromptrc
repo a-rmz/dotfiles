@@ -1,0 +1,19 @@
+####################################
+# LIQUID PROMPT CONFIGURATION FILE #
+####################################
+
+# If you want to use different themes and features,
+# you can load the corresponding files here:
+#source ~/.config/liquidprompt/nojhan.theme
+#LP_PS1_FILE=~/.config/liquidprompt/nojhan.ps1
+
+#############
+# BEHAVIOUR #
+#############
+
+source ~/.liquidprompt/liquid.theme
+LP_PS1_FILE=~/.liquidprompt/prompt.ps1
+
+LP_HOSTNAME_ALWAYS=1
+LP_USER_ALWAYS=1
+LP_ENABLE_SUDO=1

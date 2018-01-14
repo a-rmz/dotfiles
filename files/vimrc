@@ -1,0 +1,258 @@
+" ======================================
+  "               Plugin setup
+" ======================================
+" Load the plugins
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'mhartington/oceanic-next'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
+Plug 'pwntester/cobalt2.vim'
+Plug 'trevordmiller/nova-vim'
+Plug 'chriskempson/base16-vim'
+
+" Startify
+" Startup screen
+Plug 'mhinz/vim-startify'
+
+" Obsession
+" Continuously updated session files
+Plug 'tpope/vim-obsession'
+
+" OrgMode
+" Text outlining and task management for Vim based on Emacs' Org-Mode
+Plug 'jceb/vim-orgmode'
+" SpeedDating
+" Dependency for OrgMode
+Plug 'tpope/vim-speeddating'
+" Univeral Text Linking 
+" Execute URLs, footnotes, open emails, organize ideas
+Plug 'vim-scripts/utl.vim'
+" vim-easy-align
+" 🌻 A Vim alignment plugin
+Plug 'junegunn/vim-easy-align'
+
+" VimWiki
+" Personal Wiki for Vim
+Plug 'vimwiki/vimwiki'
+
+" Nerds!
+" NerdTREE
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" NerdCommenter
+" Vim plugin for intensely orgasmic commenting
+Plug 'scrooloose/nerdcommenter'
+
+" Tagbar
+Plug 'majutsushi/tagbar'
+" Javascript support
+Plug 'ternjs/tern'
+" Tagbar for javascript
+" Plug 'hushicai/tagbar-javascript.vim'
+
+" Surround.vim
+" Quoting/parenthesizing made simple
+Plug 'tpope/vim-surround'
+
+" Goyo
+" Distraction-free writing in Vim.
+Plug 'junegunn/goyo.vim'
+" Limelight
+" All the world's indeed a stage and we are merely players
+Plug 'junegunn/limelight.vim'
+
+" eunuch.vim
+" Vim sugar for the UNIX shell commands that need it the most
+Plug 'tpope/vim-eunuch'
+
+" GitHub dashboard
+Plug 'junegunn/vim-github-dashboard'
+
+" Gitgutter
+" A Vim plugin which shows a git diff in the gutter (sign column) and
+" stages/undoes hunks.
+Plug 'airblade/vim-gitgutter'
+
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Ack.vim
+Plug 'mileszs/ack.vim'
+
+" vim-polyglot
+" A collection of language packs for Vim.
+Plug 'sheerun/vim-polyglot'
+
+" Markdown for Vim
+" A complete environment to create Markdown files with a syntax highlight that doesn't suck!
+Plug 'gabrielelana/vim-markdown'
+
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
+
+" Fugitive
+" A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+
+" Lean & mean status/tabline for vim that's light as air
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+
+" Initialize plugin system
+call plug#end()
+ 
+
+" ======================================
+"            GitHub Dashboard
+" ======================================
+let g:github_dashboard = {}
+" Customize emoji (see http://www.emoji-cheat-sheet.com/)
+let g:github_dashboard['emoji_map'] = {
+\   'user_dashboard': 'blush',
+\   'user_activity':  'smile',
+\   'repo_activity':  'laughing',
+\   'ForkEvent':      'fork_and_knife'
+\ }
+
+" Do not set statusline
+" " - Then you can customize your own statusline with
+" github_dashboard#status()
+let g:github_dashboard['statusline'] = 0
+
+" ======================================
+"               ALE
+" ======================================
+let g:airline#extensions#ale#enabled = 1
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
+
+" ======================================
+"            JavaScrighlight LineNr ctermfg=grey ctermbg=whitept
+" ======================================
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+
+" ======================================
+"                Settings
+" ======================================
+" Tabs and spaces
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+let g:NERDDefaultAlign = 'start'
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Map leader to space
+let mapleader=' '
+set mouse=a                           " Set mouse support
+
+" background processes
+set clipboard=unnamed                 " use native clipboard
+set lazyredraw                        " no unneeded redraws
+set nobackup                          " don't save backups
+set noerrorbells                      " no error bells please
+set noswapfile                        " no swapfiles
+
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+set cursorline
+set number
+set wildmode=longest:list,full        " command line completion
+set whichwrap=b,s,h,l,<,>,[,]         " backspace and cursor keys wrap too
+set showmatch                         " highlight matching parenthesis
+
+set backspace=indent,eol,start        " make backspace work like most other programs
+
+set foldmethod=syntax
+set foldlevel=99
+
+" ======================================
+"            Visual Settings
+" ======================================
+let g:onedark_terminal_italics = 1
+let g:one_allow_italics = 1
+let g:enable_bold_font = 1
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+
+set background=dark
+" colorscheme hybrid_material
+" colorscheme hybrid_reverse
+" colorscheme PaperColor
+" colorscheme one
+" colorscheme onedark
+" colorscheme cobalt2
+" colorscheme OceanicNext
+colorscheme base16-gruvbox-dark-soft
+
+if (g:colors_name =~ "hybrid")
+  let g:airline_theme = "hybrid"
+elseif (g:colors_name =~ "OceanicNext")
+  let g:airline_theme="oceanicnext"
+elseif (g:colors_name =~ "one")
+  let g:airline_theme="one"
+elseif (g:colors_name =~ "base16")
+  highlight CursorLine ctermbg=18
+  highlight LineNr ctermfg=19 ctermbg=black
+  let g:airline_theme="base16"
+endif
+
+" Open NERDTree everytime Vim opens
+" autocmd VimEnter * NERDTree
+"
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" ======================================
+"            Useful mappings
+" ======================================
+" NERDTree Mappings
+map nt :NERDTreeToggle<cr>
+map nf :NERDTreeFind<cr>
+
+" NerdCommenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Tagbar
+nmap tt :TagbarToggle<CR>
+
+" Limelight
+nmap <Leader>ll :Limelight!!<CR>
+
+" Navigate through windows
+" noremap <C-J> <C-W>j<C-W>_
+" noremap <C-K> <C-W>k<C-W>_
+" noremap <C-H> <C-W>h<C-W>_
+" noremap <C-L> <C-W>l<C-W>_
+
+" fzf
+nmap ; :Buffers<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>t :Tags<CR>
+
+" Line numbers
+:set number
+:nmap nn :set invnumber<CR>
+
+" Shortcuts
+nmap <C-N> :new<CR>
+
+" Align GitHub-flavored Markdown tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+
