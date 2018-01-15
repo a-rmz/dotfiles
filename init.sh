@@ -27,6 +27,8 @@ ln -s ~/dotfiles/files/tmux.conf ~/.tmux.conf
 vim +PlugInstall +qall
 
 # nvm
+# Node Version Manager - Simple bash script to manage multiple active node.js versions 
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
 # fzf: A command-line fuzzy finder
 # https://github.com/junegunn/fzf
