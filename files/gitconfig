@@ -1,0 +1,71 @@
+[core]
+  editor = vim
+[log]
+  decorate = true
+  abbrevCommit = true
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green
+  whitespace = red reverse
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[gitflow "prefix"]
+  feature = feat/
+  release = rel/
+  hotfix = hf/
+  support = supp/
+  versiontag = v
+[alias]
+  a = add
+  aa = add --all
+  ####
+  b = branch
+  ba = branch -a
+  ####
+  c = commit
+  ca = commit -a
+  cln = "!f(){ git clone git@github.com:\"$1\".git; };f"
+  cm = commit -m
+  co = checkout
+  cob = checkout -b
+  ####
+  d = diff
+  dt = difftool -y
+  dad = !curl https://icanhazdadjoke.com/
+  ####
+  fl = flow
+  ft = feat
+  fpr = "!f(){ ( git fetch origin pull/\"$1\"/head:pull/\"$2\" && git checkout pull/\"$2\"; ) || echo "Arguments required: PR number, branch name" >&2; };f"
+  ###
+  l = log
+  ###
+  m = merge --no-ff
+  mff = merge
+  ###
+  ps = push
+  psu = push -u origin
+  pl = pull
+  po = push -u origin
+  ####
+  ra = remote add origin
+  rhh = reset --hard HEAD
+  rmc = rm --cached
+  rv = remote -v
+  ####
+  s = status
+  ####
+  wd = diff --word-diff
+[push]
+	default = simple
