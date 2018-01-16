@@ -2,13 +2,15 @@
 or how I set up my development environment
 
 Installs the following programs:
-- zsh
-- ag
-- tmux
-- vim (latest, > 8)
-- vim-plug
-- fzf
-- liquidprompt
+- [zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
+- [oh-my-zsh](http://ohmyz.sh/)
+- [ag](https://github.com/ggreer/the_silver_searcher)
+- [tmux](https://github.com/tmux/tmux/wiki)
+- [vim](https://github.com/vim/vim) (latest, > 8)
+- [vim-plug](https://github.com/junegunn/vim-plug)
+- [fzf](https://github.com/junegunn/fzf)
+- [liquidprompt](https://github.com/nojhan/liquidprompt)
+- [nvm](https://github.com/creationix/nvm)
 
 Also, sets `zsh` as the default shell with a nice-looking base16 colorscheme.
 
