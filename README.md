@@ -1,6 +1,12 @@
 # dotfiles
 or how I set up my development environment
 
+---
+
+Just run `sh init.sh` and everything should run.
+
+---
+
 Installs the following programs:
 - [zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
 - [oh-my-zsh](http://ohmyz.sh/)
