@@ -62,8 +62,6 @@ if [ -e $BASE16_SHELL ]; then
   base16_gruvbox-dark-soft
 fi
 
-export PATH="$PATH:/opt/java/jdk1.8.0_121/bin"
-
 # fzf
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
