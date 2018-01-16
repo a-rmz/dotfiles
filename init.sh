@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install zsh silversearcher-ag tmux screenfetch
+sudo apt install -y zsh silversearcher-ag tmux
 chsh -s $(which zsh)
 
 # oh-my-zsh
@@ -60,4 +60,3 @@ ln -s ~/dotfiles/files/prompt.ps1 ~/.liquidprompt/prompt.ps1
 echo
 echo
 echo "Set up completed. Restart the shell to start rocking this."
-screenfetch
