@@ -1,3 +1,5 @@
+[user]
+	signingkey =
 [core]
   editor = vim
 [log]
@@ -17,6 +19,8 @@
   added = green bold
   changed = yellow bold
   untracked = red bold
+[credential]
+	helper = store
 [diff]
   tool = vimdiff
 [difftool]
@@ -34,9 +38,8 @@
   b = branch
   ba = branch -a
   ####
-  c = commit
+  c = commit -S
   ca = commit -a
-  cln = "!f(){ git clone git@github.com:\"$1\".git; };f"
   cm = commit -m
   co = checkout
   cob = checkout -b
@@ -45,19 +48,23 @@
   dt = difftool -y
   dad = !curl https://icanhazdadjoke.com/
   ####
+  fa = fetch --all
   fl = flow
   ft = feat
   fpr = "!f(){ ( git fetch origin pull/\"$1\"/head:pull/\"$2\" && git checkout pull/\"$2\"; ) || echo "Arguments required: PR number, branch name" >&2; };f"
   ###
   l = log
+  lp = log -p
+  lg = log --graph --all
   ###
   m = merge --no-ff
   mff = merge
   ###
   ps = push
-  psu = push -u origin
+  psu = "!f(){ git push -u origin $(git rev-parse --abbrev-ref HEAD); };f"
   pl = pull
   po = push -u origin
+  pr = pull-request
   ####
   ra = remote add origin
   rhh = reset --hard HEAD
@@ -69,3 +76,5 @@
   wd = diff --word-diff
 [push]
 	default = simple
+[commit]
+	gpgsign = true

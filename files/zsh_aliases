@@ -1,8 +1,8 @@
 # File listing
-
-alias ls='ls --color=auto -F'
-alias ll='ls -alF'
+alias ls='ls -FG'
+alias ll='ls -lF'
 alias la='ls -A'
+alias lla='ls -lA'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
@@ -11,11 +11,31 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Xclip
-alias cb='xclip -selection clipboard'
+alias cb='pbcopy'
 
 #Vim-style exit
 alias :q='exit'
 
 # Vim
 # + NERDTree
-alias vimnt='vim "+NERDTree"'
+alias v='vim'
+alias vnt='vim "+NERDTree"'
+
+# Docker
+alias drmiall='docker rmi $(sudo docker images -q)'
+alias drmiau='docker rmi -f $(docker images | grep "^<none>" | awk "{print $3}")'
+alias dc='docker-compose'
+alias dcb='docker-compose build'
+alias dcu='docker-compose up'
+alias dcsr='docker-compose stop && docker-compose rm -f'
+
+# Git + hub
+alias git='hub'
+alias g='hub'
+
+# Zsh
+alias aliases='$EDITOR ~/.zsh_aliases'
+alias zshconf='$EDITOR ~/.zshrc'
+
+# Kubernetes
+alias k='kubectl'

@@ -1,5 +1,5 @@
 " ======================================
-  "               Plugin setup
+"              Plugin setup
 " ======================================
 " Load the plugins
 call plug#begin('~/.vim/plugged')
@@ -17,10 +17,6 @@ Plug 'chriskempson/base16-vim'
 " Startify
 " Startup screen
 Plug 'mhinz/vim-startify'
-
-" Obsession
-" Continuously updated session files
-Plug 'tpope/vim-obsession'
 
 " OrgMode
 " Text outlining and task management for Vim based on Emacs' Org-Mode
@@ -42,7 +38,7 @@ Plug 'vimwiki/vimwiki'
 " Nerds!
 " NerdTREE
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 
 " NerdCommenter
 " Vim plugin for intensely orgasmic commenting
@@ -66,10 +62,6 @@ Plug 'junegunn/goyo.vim'
 " All the world's indeed a stage and we are merely players
 Plug 'junegunn/limelight.vim'
 
-" eunuch.vim
-" Vim sugar for the UNIX shell commands that need it the most
-Plug 'tpope/vim-eunuch'
-
 " GitHub dashboard
 Plug 'junegunn/vim-github-dashboard'
 
@@ -89,12 +81,28 @@ Plug 'mileszs/ack.vim'
 " A collection of language packs for Vim.
 Plug 'sheerun/vim-polyglot'
 
+" A Vim plugin for TypeScript
+Plug 'Quramy/tsuquyomi'
+
+" vim-graphql
+" A Vim plugin that provides GraphQL file detection,
+" syntax highlighting, and indentation.
+Plug 'jparise/vim-graphql'
+
 " Markdown for Vim
 " A complete environment to create Markdown files with a syntax highlight that doesn't suck!
 Plug 'gabrielelana/vim-markdown'
 
+" Dockerfile.vim
+" Vim syntax file & snippets for Docker's Dockerfile 
+Plug 'ekalinin/Dockerfile.vim'
+
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
+
+" EditorConfig
+" EditorConfig plugin for Vim http://editorconfig.org
+Plug 'editorconfig/editorconfig-vim'
 
 " Fugitive
 " A Git wrapper so awesome, it should be illegal
@@ -104,27 +112,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-
 " Initialize plugin system
 call plug#end()
  
 
-" ======================================
-"            GitHub Dashboard
-" ======================================
-let g:github_dashboard = {}
-" Customize emoji (see http://www.emoji-cheat-sheet.com/)
-let g:github_dashboard['emoji_map'] = {
-\   'user_dashboard': 'blush',
-\   'user_activity':  'smile',
-\   'repo_activity':  'laughing',
-\   'ForkEvent':      'fork_and_knife'
-\ }
-
-" Do not set statusline
-" " - Then you can customize your own statusline with
-" github_dashboard#status()
-let g:github_dashboard['statusline'] = 0
+" Disable Vim's default file explorer 
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
 
 " ======================================
 "               ALE
@@ -151,8 +145,9 @@ let g:javascript_plugin_flow = 1
 :set tabstop=2
 :set shiftwidth=2
 :set expandtab
+" Sexy comments aligned to the beginning of the line
 let g:NERDDefaultAlign = 'start'
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --column'
 
 " Map leader to space
 let mapleader=' '
@@ -214,7 +209,12 @@ endif
 
 " Open NERDTree everytime Vim opens
 " autocmd VimEnter * NERDTree
-"
+
+" How can I close vim if the only window left open is a NERDTree?
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeMinimalUI = 1
+let NERDTreeShowBookmarks = 1
+
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
@@ -223,7 +223,7 @@ autocmd! User GoyoLeave Limelight!
 " ======================================
 " NERDTree Mappings
 map nt :NERDTreeToggle<cr>
-map nf :NERDTreeFind<cr>
+map nf :NERDTreeFocus<cr>
 
 " NerdCommenter
 " Add spaces after comment delimiters by default
@@ -244,6 +244,7 @@ nmap <Leader>ll :Limelight!!<CR>
 " fzf
 nmap ; :Buffers<CR>
 nmap <Leader>f :Files<CR>
+nmap <Leader>g :GFiles<CR>
 nmap <Leader>t :Tags<CR>
 
 " Line numbers
@@ -256,3 +257,7 @@ nmap <C-N> :new<CR>
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
+nmap cp ciw<C-r>0<Esc>
+
+nnoremap <leader>s :ToggleWorkspace<CR>
+let g:workspace_session_name = '.session.vim'

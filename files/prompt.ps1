@@ -28,10 +28,8 @@
 # Remember that most features come with their corresponding colors,
 # see the README.
 
-# add time, jobs, load and battery
-LP_PS1="${LP_PS1_PREFIX}"
 # add user, host and permissions colon
-LP_PS1="${LP_PS1}${LP_BRACKET_OPEN}${LP_USER}${LP_HOST}${LP_PERM}"
+LP_PS1="${LP_PS1_PREFIX}${LP_BRACKET_OPEN}${LP_USER}${LP_HOST}${LP_PERM}"
 
 LP_PS1="${LP_PS1} ${LP_PWD}${LP_BRACKET_CLOSE}${LP_VENV}${LP_PROXY}"
 
