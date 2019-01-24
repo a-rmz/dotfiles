@@ -62,7 +62,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 if [ -e $BASE16_SHELL ]; then
   # Select color scheme
-  base16_gruvbox-dark-soft
+  base16_gruvbox-dark-hard
 fi
 
 # fzf
