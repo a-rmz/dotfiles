@@ -1,10 +1,8 @@
 # File listing
-alias ls='ls -FG'
-alias ll='ls -lF'
-alias la='ls -A'
-alias lla='ls -lA'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
+alias ls='exa -FG'
+alias ll='exa -lF'
+alias la='exa -a'
+alias lla='exa -la'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -32,10 +30,22 @@ alias dcsr='docker-compose stop && docker-compose rm -f'
 # Git + hub
 alias git='hub'
 alias g='hub'
+alias gca='g commit --amend'
+alias gs='g status'
+alias gap='g add -p'
+alias gbD='g b -D'
+alias gds='gd --staged'
+alias gcm='g commit -m'
 
 # Zsh
 alias aliases='$EDITOR ~/.zsh_aliases'
 alias zshconf='$EDITOR ~/.zshrc'
+alias path='echo -e ${PATH//:/\\n}'
 
 # Kubernetes
 alias k='kubectl'
+
+alias server='python -m http.server 8080'
+alias ws='webstorm'
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias prv=preview
