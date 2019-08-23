@@ -61,6 +61,9 @@ Plug 'junegunn/goyo.vim'
 " Limelight
 " All the world's indeed a stage and we are merely players
 Plug 'junegunn/limelight.vim'
+" vim-pencil
+" Rethinking Vim as a tool for writers
+Plug 'reedes/vim-pencil'
 
 " GitHub dashboard
 Plug 'junegunn/vim-github-dashboard'
@@ -71,8 +74,9 @@ Plug 'junegunn/vim-github-dashboard'
 Plug 'airblade/vim-gitgutter'
 
 " fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'mattn/vim-fz'
 
 " Ack.vim
 Plug 'mileszs/ack.vim'
@@ -97,6 +101,10 @@ Plug 'gabrielelana/vim-markdown'
 " Vim syntax file & snippets for Docker's Dockerfile 
 Plug 'ekalinin/Dockerfile.vim'
 
+" jedi-vim
+" Using the jedi autocompletion library for VIM.
+Plug 'davidhalter/jedi-vim'
+
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
 
@@ -112,6 +120,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Supertab
+" Perform all your vim insert mode completions with Tab
+Plug 'ervandew/supertab'
+
 " Initialize plugin system
 call plug#end()
  
@@ -125,12 +137,15 @@ let g:loaded_netrwPlugin = 1
 " ======================================
 let g:airline#extensions#ale#enabled = 1
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
+\ 'javascript': ['eslint'],
+\ 'typescript': ['tslint'],
+\ 'xml': ['xmllint']
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 
 " ======================================
 "            JavaScrighlight LineNr ctermfg=grey ctermbg=whitept
@@ -223,7 +238,7 @@ autocmd! User GoyoLeave Limelight!
 " ======================================
 " NERDTree Mappings
 map nt :NERDTreeToggle<cr>
-map nf :NERDTreeFocus<cr>
+map nf :NERDTreeFind<cr>
 
 " NerdCommenter
 " Add spaces after comment delimiters by default
@@ -290,3 +305,22 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
+
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+\ }
