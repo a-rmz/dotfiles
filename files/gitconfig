@@ -38,7 +38,8 @@
   b = branch
   ba = branch -a
   ####
-  c = commit -S
+  c = commit
+  cs = commit -S
   ca = commit -a
   cm = commit -m
   co = checkout
@@ -53,9 +54,9 @@
   ft = feat
   fpr = "!f(){ ( git fetch origin pull/\"$1\"/head:pull/\"$2\" && git checkout pull/\"$2\"; ) || echo "Arguments required: PR number, branch name" >&2; };f"
   ###
-  l = log
+  l = log --graph --all
+  ls = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   lp = log -p
-  lg = log --graph --all
   ###
   m = merge --no-ff
   mff = merge
@@ -72,9 +73,8 @@
   rv = remote -v
   ####
   s = status
+  sv = status -v
   ####
   wd = diff --word-diff
 [push]
 	default = simple
-[commit]
-	gpgsign = true
