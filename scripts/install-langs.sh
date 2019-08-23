@@ -6,7 +6,7 @@ brew install \
   pipenv \
   hub 
 
-[[ $(pyenv --version) ]] && pyenv install 3.6.5
+[[ $(pyenv --version) ]] && pyenv install 3.7
 
 # Ruby Version Manager (RVM)
 # RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
@@ -16,5 +16,5 @@ curl -sSL https://get.rvm.io | bash -s stable --rails
 # nvm
 # Node Version Manager - Simple bash script to manage multiple active node.js versions 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+# Install the latest version of node
 nvm install node
-nvm install 9.11
