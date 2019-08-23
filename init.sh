@@ -42,6 +42,7 @@ ln -s ~/dotfiles/files/vimrc ~/.vimrc
 ln -s ~/dotfiles/files/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/files/liquidpromptrc ~/.liquidpromptrc 
 ln -s ~/dotfiles/files/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/files/fzf.theme ~/.fzf.theme
 # TODO: Source function to update
 
 # Install vim plugins
