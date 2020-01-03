@@ -31,6 +31,10 @@ if [ -f ~/.zsh_aliases ]; then
     . ~/.zsh_aliases
 fi
 
+# Keybindings
+if [ -f ~/.zsh_bindings ]; then
+    . ~/.zsh_bindings
+fi
 
 ########################
 # User configuration
@@ -77,7 +81,7 @@ fi
 
 # fzf + ag configuration
 if command -v fzf>/dev/null && command -v ag>/dev/null; then
-  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_DEFAULT_OPTS='

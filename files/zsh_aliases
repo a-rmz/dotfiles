@@ -36,6 +36,7 @@ alias gap='g add -p'
 alias gbD='g b -D'
 alias gds='gd --staged'
 alias gcm='g commit -m'
+alias dev='g co develop'
 
 # Zsh
 alias aliases='$EDITOR ~/.zsh_aliases'

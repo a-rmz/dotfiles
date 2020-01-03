@@ -38,6 +38,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # Link new config files
 ln -s ~/dotfiles/files/zshrc ~/.zshrc
 ln -s ~/dotfiles/files/zsh_aliases ~/.zsh_aliases
+ln -s ~/dotfiles/files/zsh_bindings ~/.zsh_bindings
 ln -s ~/dotfiles/files/vimrc ~/.vimrc
 ln -s ~/dotfiles/files/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/files/liquidpromptrc ~/.liquidpromptrc 

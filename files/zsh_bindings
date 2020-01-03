@@ -1,0 +1,2 @@
+bindkey '^v' forward-word                        # [Ctrl-RightArrow] - move forward one word
+bindkey '^b' backward-word                       # [Ctrl-LeftArrow] - move backward one word
