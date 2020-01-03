@@ -2,6 +2,7 @@
 	signingkey =
 [core]
   editor = vim
+	pager = delta --dark
 [log]
   decorate = true
   abbrevCommit = true
