@@ -44,12 +44,17 @@ Plug 'scrooloose/nerdtree'
 " Vim plugin for intensely orgasmic commenting
 Plug 'scrooloose/nerdcommenter'
 
+" Lean & mean status/tabline for vim that's light as air
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" vim-devicons
+" Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more  
+" https://github.com/ryanoasis/vim-devicons
+Plug 'ryanoasis/vim-devicons'
+
 " Tagbar
 Plug 'majutsushi/tagbar'
-" Javascript support
-Plug 'ternjs/tern'
-" Tagbar for javascript
-" Plug 'hushicai/tagbar-javascript.vim'
 
 " Surround.vim
 " Quoting/parenthesizing made simple
@@ -64,9 +69,6 @@ Plug 'junegunn/limelight.vim'
 " vim-pencil
 " Rethinking Vim as a tool for writers
 Plug 'reedes/vim-pencil'
-
-" GitHub dashboard
-Plug 'junegunn/vim-github-dashboard'
 
 " Gitgutter
 " A Vim plugin which shows a git diff in the gutter (sign column) and
@@ -93,6 +95,11 @@ Plug 'Quramy/tsuquyomi'
 " syntax highlighting, and indentation.
 Plug 'jparise/vim-graphql'
 
+
+" vim-go
+" Go development plugin for Vim
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Markdown for Vim
 " A complete environment to create Markdown files with a syntax highlight that doesn't suck!
 Plug 'gabrielelana/vim-markdown'
@@ -105,8 +112,20 @@ Plug 'ekalinin/Dockerfile.vim'
 " Using the jedi autocompletion library for VIM.
 Plug 'davidhalter/jedi-vim'
 
+" Black
+" The uncompromising Python code formatter
+Plug 'psf/black'
+
+" vim-vue
+" Syntax Highlight for Vue.js components 
+Plug 'posva/vim-vue'
+
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
+
+" vim-closetag
+" Auto close (X)HTML tags
+Plug 'alvan/vim-closetag'
 
 " EditorConfig
 " EditorConfig plugin for Vim http://editorconfig.org
@@ -116,13 +135,15 @@ Plug 'editorconfig/editorconfig-vim'
 " A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
-" Lean & mean status/tabline for vim that's light as air
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 " Supertab
 " Perform all your vim insert mode completions with Tab
 Plug 'ervandew/supertab'
+
+" CamelCaseMotion
+" A vim script to provide CamelCase motion through words (fork of inkarkat's camelcasemotion script)
+" https://github.com/bkad/CamelCaseMotion
+Plug 'bkad/CamelCaseMotion'
+
 
 " Initialize plugin system
 call plug#end()
@@ -136,10 +157,17 @@ let g:loaded_netrwPlugin = 1
 "               ALE
 " ======================================
 let g:airline#extensions#ale#enabled = 1
+let b:ale_linters = {
+\ 'python': ['flake8']
+\}
+
 let g:ale_fixers = {
+\ 'css': ['prettier'],
 \ 'javascript': ['eslint'],
+\ 'python': ['black'],
 \ 'typescript': ['tslint'],
-\ 'xml': ['xmllint']
+\ 'scss': ['stylelint'],
+\ 'xml': ['xmllint'],
 \}
 
 " Set this setting in vimrc if you want to fix files automatically on save.
@@ -148,7 +176,7 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 
 " ======================================
-"            JavaScrighlight LineNr ctermfg=grey ctermbg=whitept
+"            JavaScrighlight LineNr
 " ======================================
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -191,6 +219,12 @@ set backspace=indent,eol,start        " make backspace work like most other prog
 set foldmethod=syntax
 set foldlevel=99
 
+
+" ======================================
+"                vim-vue
+" ======================================
+let g:vue_pre_processors = ['scss']
+
 " ======================================
 "            Visual Settings
 " ======================================
@@ -226,12 +260,17 @@ endif
 " autocmd VimEnter * NERDTree
 
 " How can I close vim if the only window left open is a NERDTree?
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup NERDTree
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
 let NERDTreeMinimalUI = 1
 let NERDTreeShowBookmarks = 1
 
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+augroup WriterMode
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
+augroup END
 
 " ======================================
 "            Useful mappings
@@ -265,6 +304,17 @@ nmap <Leader>t :Tags<CR>
 " Line numbers
 :set number
 :nmap nn :set invnumber<CR>
+
+
+" CamelCaseMotion
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
 
 " Shortcuts
 nmap <C-N> :new<CR>
@@ -324,3 +374,69 @@ let g:tagbar_type_typescript = {
   \ ],
   \ 'sort' : 0
 \ }
+
+
+function! FmtJSON()
+  :%!python -m json.tool
+endfunction
+
+" ========================================
+"      Devicons + NERDTree config
+" ========================================
+
+" NERDTrees File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+function! NERDTreeHighlightIcon(extension, icon, fg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .'_icon ctermbg=none ctermfg='. a:fg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .'_icon #'. a:icon .'# containedin=NERDTreeFile,'.a:extension
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('xml', 'red', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('spec', 'Gray', 'none', '#686868', '#151515')
+
+augroup NERDTreeColor
+  " Reference colors:
+  " https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim
+
+  " TypeScript
+  call NERDTreeHighlightIcon('ts', '', 32)
+  " Python
+  call NERDTreeHighlightIcon('py', '', 67)
+  " Sass
+  call NERDTreeHighlightIcon('scss', '', 175)
+  " Dockerfile
+  call NERDTreeHighlightIcon('Dockerfile', '', 'blue')
+  " JavaScript
+  call NERDTreeHighlightIcon('js', '', 'yellow')
+  " HTML
+  call NERDTreeHighlightIcon('html', '', 'yellow')
+  " YAML
+  call NERDTreeHighlightIcon('yaml', '', 'gray')
+  " MD
+  call NERDTreeHighlightIcon('md', '', 'magenta')
+  " SQL
+  call NERDTreeHighlightIcon('sql', '', 163)
+  " Ruby
+  call NERDTreeHighlightIcon('rb', '', 88)
+augroup END
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
