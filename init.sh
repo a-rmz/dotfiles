@@ -14,11 +14,7 @@ chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # cool stuff
-brew install \
-  the_silver_searcher \
-  tmux \
-  fzf \
-  z
+brew install $(< brewdeps.txt )
   
 
 # Base16 colorscheme for shell
