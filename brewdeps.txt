@@ -9,7 +9,7 @@ dep
 exa
 fzf
 giflib
-dandavison/delta/git-delta
+git-delta
 thoughtbot/formulae/gitsh
 gnupg
 gotags

@@ -25,28 +25,37 @@ alias drmiau='docker rmi -f $(docker images | grep "^<none>" | awk "{print $3}")
 alias dc='docker-compose'
 alias dcb='docker-compose build'
 alias dcu='docker-compose up'
+alias dcs='docker-compose stop'
 alias dcsr='docker-compose stop && docker-compose rm -f'
 
 # Git + hub
 alias git='hub'
 alias g='hub'
-alias gca='g commit --amend'
+alias gca='g commit --amend --no-edit'
 alias gs='g status'
 alias gap='g add -p'
 alias gbD='g b -D'
 alias gds='gd --staged'
 alias gcm='g commit -m'
-alias dev='g co develop'
-
+alias dv='g co develop'
+alias grc='g rebase --continue'
+alias grd='g stash && g fetch origin develop:develop && g merge develop && g rebase develop && g stash pop'
 # Zsh
 alias aliases='$EDITOR ~/.zsh_aliases'
 alias zshconf='$EDITOR ~/.zshrc'
 alias path='echo -e ${PATH//:/\\n}'
 
+# Tmuxinator
+alias m='tmuxinator'
+
 # Kubernetes
 alias k='kubectl'
 
+# Python
 alias server='python -m http.server 8080'
+alias shell='python manage.py shell'
+
+# Other stuff
 alias ws='webstorm'
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias prv=preview
