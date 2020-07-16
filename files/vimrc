@@ -114,7 +114,7 @@ Plug 'davidhalter/jedi-vim'
 
 " Black
 " The uncompromising Python code formatter
-Plug 'psf/black'
+" Plug 'psf/black'
 
 " vim-vue
 " Syntax Highlight for Vue.js components 

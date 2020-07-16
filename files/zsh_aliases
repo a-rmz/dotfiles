@@ -54,6 +54,7 @@ alias k='kubectl'
 # Python
 alias server='python -m http.server 8080'
 alias shell='python manage.py shell'
+alias pym='python manage.py '
 
 # Other stuff
 alias ws='webstorm'
