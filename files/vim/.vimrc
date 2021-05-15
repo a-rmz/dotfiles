@@ -13,6 +13,7 @@ Plug 'rakr/vim-one'
 Plug 'pwntester/cobalt2.vim'
 Plug 'trevordmiller/nova-vim'
 Plug 'chriskempson/base16-vim'
+Plug 'arcticicestudio/nord-vim'
 
 " Startify
 " Startup screen
@@ -111,10 +112,6 @@ Plug 'ekalinin/Dockerfile.vim'
 " jedi-vim
 " Using the jedi autocompletion library for VIM.
 Plug 'davidhalter/jedi-vim'
-
-" Black
-" The uncompromising Python code formatter
-" Plug 'psf/black'
 
 " vim-vue
 " Syntax Highlight for Vue.js components 
@@ -242,7 +239,8 @@ set background=dark
 " colorscheme onedark
 " colorscheme cobalt2
 " colorscheme OceanicNext
-colorscheme base16-gruvbox-dark-soft
+" colorscheme base16-gruvbox-dark-soft
+colorscheme nord
 
 if (g:colors_name =~ "hybrid")
   let g:airline_theme = "hybrid"
@@ -255,6 +253,10 @@ elseif (g:colors_name =~ "base16")
   highlight LineNr ctermfg=19 ctermbg=black
   let g:airline_theme="base16"
 endif
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
 
 " Open NERDTree everytime Vim opens
 " autocmd VimEnter * NERDTree

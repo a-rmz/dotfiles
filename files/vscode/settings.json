@@ -1,8 +1,19 @@
 {
-  "workbench.colorTheme": "Outrun",
+  "workbench.colorTheme": "Outrun Electric",
   "window.zoomLevel": 1,
   "editor.fontSize": 14,
   "files.autoSave": "onWindowChange",
-  "editor.tabSize": 2,
   "editor.wordWrap": "on",
+  "python.venvPath": "~/.pyenv",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pyc": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "python.languageServer": "Pylance",
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/Users/a-rmz/Library/Caches/pypoetry/virtualenvs/thoth-UzKY25i8-py3.9/bin/black",
+  "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.inlineHints.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
 }

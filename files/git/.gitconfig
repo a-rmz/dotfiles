@@ -1,5 +1,6 @@
 [user]
-	signingkey =
+  email = 
+  name = 
 [core]
   editor = vim
   pager = delta --dark
@@ -64,7 +65,9 @@
   mff = merge
   ###
   ps = push
+  pn = push --no-verify
   psu = "!f(){ git push -u origin $(git rev-parse --abbrev-ref HEAD); };f"
+  pnu = "!f(){ git push --no-verify -u origin $(git rev-parse --abbrev-ref HEAD); };f"
   pl = pull
   po = push -u origin
   pr = pull-request
@@ -73,6 +76,7 @@
   rhh = reset --hard HEAD
   rmc = rm --cached
   rv = remote -v
+  rs = restore --staged
   ####
   s = status
   sv = status -v
@@ -80,3 +84,5 @@
   wd = diff --word-diff
 [push]
 	default = simple
+[rerere]
+	enabled = true

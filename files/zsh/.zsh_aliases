@@ -30,16 +30,25 @@ alias dcsr='docker-compose stop && docker-compose rm -f'
 
 # Git + hub
 alias git='hub'
+# ====
+alias dv='g co develop'
 alias g='hub'
-alias gca='g commit --amend --no-edit'
-alias gs='g status'
 alias gap='g add -p'
 alias gbD='g b -D'
-alias gds='gd --staged'
+alias gca='g commit --amend --no-edit'
 alias gcm='g commit -m'
-alias dv='g co develop'
+alias gds='gd --staged'
+alias gpfn='g ps --force-with-lease --no-verify'
+alias gpsu='g psu'
+alias gpnu='g pnu'
 alias grc='g rebase --continue'
-alias grd='g stash && g fetch origin develop:develop && g merge develop && g rebase develop && g stash pop'
+alias grd='g rebase develop'
+alias grid='g rebase -i develop'
+alias grm='g rebase master'
+alias grim='g rebase -i master'
+alias gs='g status'
+alias gsn='g sync'
+
 # Zsh
 alias aliases='$EDITOR ~/.zsh_aliases'
 alias zshconf='$EDITOR ~/.zshrc'
@@ -60,3 +69,5 @@ alias pym='python manage.py '
 alias ws='webstorm'
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias prv=preview
+
+alias vshell="pod_name=$(kubectl -n berth-reservations-qa get po | egrep berth-reservations-staging.+Running | head -1 | awk '{print $1;}');echo pod:$pod_name;kubectl -n berth-reservations-qa exec -it $pod_name -- bash"

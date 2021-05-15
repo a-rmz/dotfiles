@@ -15,7 +15,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # cool stuff
 brew install $(< brewdeps.txt )
-  
 
 # Base16 colorscheme for shell
 git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
@@ -23,24 +22,12 @@ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shel
 # Remove configurations in case they existed
 rm -rf ~/.vim ~/.vimrc ~/.zshrc ~/.tmxu ~/.tmux.conf 2> /dev/null
 
-# Latest version of Vim
-rm -rf /usr/bin/vim
-brew install vim
-
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Link new config files
-ln -s ~/dotfiles/files/zshrc ~/.zshrc
-ln -s ~/dotfiles/files/zsh_aliases ~/.zsh_aliases
-ln -s ~/dotfiles/files/zsh_bindings ~/.zsh_bindings
-ln -s ~/dotfiles/files/vimrc ~/.vimrc
-ln -s ~/dotfiles/files/gitconfig ~/.gitconfig
-ln -s ~/dotfiles/files/liquidpromptrc ~/.liquidpromptrc 
-ln -s ~/dotfiles/files/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/files/fzf.theme ~/.fzf.theme
-# TODO: Source function to update
+stow --dir=$HOME/.dotfiles/files/ --target=$HOME zsh vim tmux git fzf
 
 # Install vim plugins
 vim +PlugInstall +qall
@@ -59,8 +46,8 @@ $(brew --prefix)/opt/fzf/install --no-bash --no-fish --64 --key-bindings --compl
 # liquidprompt: A full-featured & carefully designed adaptive prompt for Bash & Zsh
 cd ~
 git clone https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
-ln -s ~/dotfiles/files/liquid.theme ~/.liquidprompt/liquid.theme
-ln -s ~/dotfiles/files/prompt.ps1 ~/.liquidprompt/prompt.ps1
+stow --dir=$HOME/.dotfiles/files/liquid --target=$HOME base
+stow --dir=$HOME/.dotfiles/files/liquid --target=$HOME/.liquidprompt/ conf
 
 # Install langs and envs
 sh scripts/install-langs.sh

@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 
 # Oh my zsh plugins
-plugins=(gitfast git npm)
+plugins=(gitfast git npm forgit poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,13 +61,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR.zsh_completion" ] && \. "$NVM_DIR.zsh_completion"  # This loads nvm.zsh_completion
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# BASE16_SHELL=$HOME/.config/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-if [ -e $BASE16_SHELL ]; then
-  # Select color scheme
-  base16_gruvbox-dark-hard
-fi
+# if [ -e $BASE16_SHELL ]; then
+#   Select color scheme
+#   base16_gruvbox-dark-hard
+# fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -133,3 +133,15 @@ export PATH=/Users/a-rmz/.local/bin:/opt/flutter/bin:$PATH
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="$HOME/.poetry/bin:$PATH"
