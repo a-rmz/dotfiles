@@ -22,11 +22,11 @@ alias vnt='vim "+NERDTree"'
 # Docker
 alias drmiall='docker rmi $(sudo docker images -q)'
 alias drmiau='docker rmi -f $(docker images | grep "^<none>" | awk "{print $3}")'
-alias dc='docker-compose'
-alias dcb='docker-compose build'
-alias dcu='docker-compose up'
-alias dcs='docker-compose stop'
-alias dcsr='docker-compose stop && docker-compose rm -f'
+alias dc='docker compose'
+alias dcb='docker compose build'
+alias dcu='docker compose up'
+alias dcs='docker compose stop'
+alias dcsr='docker compose stop && docker compose rm -f'
 
 # Git + hub
 alias git='hub'
@@ -44,8 +44,8 @@ alias gpnu='g pnu'
 alias grc='g rebase --continue'
 alias grd='g rebase develop'
 alias grid='g rebase -i develop'
-alias grm='g rebase master'
-alias grim='g rebase -i master'
+alias grm='g rebase $(git head-branch)'
+alias grim='g rebase -i $(git head-branch)'
 alias gs='g status'
 alias gsn='g sync'
 
@@ -69,5 +69,3 @@ alias pym='python manage.py '
 alias ws='webstorm'
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias prv=preview
-
-alias vshell="pod_name=$(kubectl -n berth-reservations-qa get po | egrep berth-reservations-staging.+Running | head -1 | awk '{print $1;}');echo pod:$pod_name;kubectl -n berth-reservations-qa exec -it $pod_name -- bash"

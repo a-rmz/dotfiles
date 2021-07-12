@@ -34,55 +34,61 @@
   support = supp/
   versiontag = v
 [alias]
+  ### A
   a = add
   aa = add --all
-  ####
+  ### B
   b = branch
   ba = branch -a
-  ####
+  ### C
   c = commit
   cs = commit -S
   ca = commit -a
   cm = commit -m
   co = checkout
   cob = checkout -b
-  ####
+  com = !git checkout $(git head-branch)
+  ### D
   d = diff
   dt = difftool -y
   dad = !curl https://icanhazdadjoke.com/
-  ####
+  ### F
   fa = fetch --all
   fl = flow
   ft = feat
   fpr = "!f(){ ( git fetch origin pull/\"$1\"/head:pull/\"$2\" && git checkout pull/\"$2\"; ) || echo "Arguments required: PR number, branch name" >&2; };f"
-  ###
+  ### H
+  head-branch = !git remote show origin | awk '/HEAD branch/ {print $NF}'
+  ### L
   l = log --graph --all
   ls = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   lp = log -p
   lol =  "!f() { git log --oneline -\"$1\"; };f"
-  ###
+  ### M
   m = merge --no-ff
   mff = merge
-  ###
+  ### P
   ps = push
   pn = push --no-verify
-  psu = "!f(){ git push -u origin $(git rev-parse --abbrev-ref HEAD); };f"
-  pnu = "!f(){ git push --no-verify -u origin $(git rev-parse --abbrev-ref HEAD); };f"
+  psu = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+  pnu = !git push --no-verify -u origin $(git rev-parse --abbrev-ref HEAD)
   pl = pull
   po = push -u origin
   pr = pull-request
-  ####
+  ### A
   ra = remote add origin
   rhh = reset --hard HEAD
   rmc = rm --cached
   rv = remote -v
   rs = restore --staged
-  ####
+  ### S
   s = status
   sv = status -v
-  ####
+  ### W
   wd = diff --word-diff
 [push]
 	default = simple
 [rerere]
 	enabled = true
+[pull]
+	rebase = true
