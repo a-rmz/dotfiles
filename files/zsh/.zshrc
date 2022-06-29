@@ -1,15 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-# if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Oh my zsh plugins
-plugins=(gitfast git npm forgit poetry)
+plugins=(gitfast git npm asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -48,75 +43,22 @@ if command -v tmux>/dev/null; then
   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 fi
 
-# Only load Liquid Prompt in interactive shells, not from a script or from scp
-[[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR.zsh_completion" ] && \. "$NVM_DIR.zsh_completion"  # This loads nvm.zsh_completion
-
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 if [ -e $BASE16_SHELL ]; then
 #   Select color scheme
-#   base16_gruvbox-dark-hard
-# fi
+  base16_gruvbox-dark-hard
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-function logentry() {
-  while getopts "mo" mode; do
-    case $mode in
-      m)
-        vim +Goyo +"set mouse=" ~/logbook/$(date '+%Y-%m-%d').md
-        ;;
-
-      o)
-        vim +Goyo +"set mouse=" ~/logbook/$(date '+%Y-%m-%d').org
-        ;;
-    esac
-
-  done
-  # Default option
-  vim +Goyo +"set mouse=" ~/logbook/$(date '+%Y-%m-%d').md
-}
 
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# pyenv-virtualenv
-# https://github.com/pyenv/pyenv-virtualenv
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 ##############################
 #      hub autocompletion    #
@@ -161,11 +103,10 @@ if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/pa
 # The next line enables shell command completion for gcloud.
 if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
-
-export PATH=$HOME/bin:$PATH
-
 # For installing psycopg2
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl/include"
 eval "$(direnv hook zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

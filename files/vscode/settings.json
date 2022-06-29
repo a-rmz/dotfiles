@@ -13,7 +13,21 @@
   "python.languageServer": "Pylance",
   "editor.formatOnSave": true,
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/Users/a-rmz/Library/Caches/pypoetry/virtualenvs/thoth-UzKY25i8-py3.9/bin/black",
   "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.inlineHints.fontFamily": "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+  "[json]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript", "vue"],
+  "customizeUI.activityBar": "wide",
+  "customizeUI.font.regular": "JetBrains Mono",
+  "customizeUI.font.monospace": "JetBrains Mono",
+  "customizeUI.titleBar": "inline",
+  "window.titleBarStyle": "native"
 }
